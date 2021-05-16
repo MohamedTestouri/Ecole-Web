@@ -1,0 +1,129 @@
+{% extends 'back/index1.html.twig' %}
+
+{% block title %}Quiz index{% endblock %}
+  {% block search %}
+<form method="post" action="{{ path('recherche1') }}">
+      <li class="nav-item nav-search"><a class="nav-link nav-link-search" href="#"><i class="ficon ft-search"></i></a>
+          <div class="search-input">
+              <input class="input" type="text" name="rs1" placeholder="search...">
+          </div>
+      </li>
+</form>
+  {% endblock %}
+{% block bodyback %}
+    <a href="{{ path('quiz_index') }}"><h1 style="text-align: center">Quiz Liste</h1></a>
+    </br>
+    </br>
+<div style="text-align: center">
+    <td>
+        <button  type="button" class="btn btn-dark" >
+
+            <a href="{{ path('quiz_new') }}">Ajouter</a></br>
+        </button>
+    </td>
+    <td>
+        <button  type="button" class="btn btn-dark" >
+            <a href="{{ path('imp') }}">Imprimer</a>
+        </button>
+    </td>
+    <td>
+        <button  type="button" class="btn btn-dark" >
+            <a href="{{ path('statQ') }}">statistique</a></br>
+        </button>
+    </td>
+    </div>
+    </br>
+    </br>
+    <select id="tri">
+        <option hidden value="">Tri  </option>
+        <option value="ASC">Tri Ascendant by name </option>
+        <option value="DESC">Tri Descendant by name</option>
+    </select>
+    <table class="table" id="t">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_quiz</th>
+                <th>Afficher</th>
+                <th>Modifier</th>
+            </tr>
+        </thead>
+        <tbody id="all">
+        {% for quiz in quizzes %}
+            <tr>
+                <td>{{ quiz.id }}</td>
+                <td>{{ quiz.nomQuiz }}</td>
+
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                        <a href="{{ path('quiz_show', {'id': quiz.id}) }}">Afficher</a>
+                    </button>
+                </td>
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                        <a href="{{ path('quiz_edit', {'id': quiz.id}) }}">Modifier</a>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tbody id="search"></tbody>
+
+    </table>
+
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+
+            $("#tri").click(function(e) {
+                /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                var value1 = $(this).val();
+                console.log(value1)
+
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+
+                $.ajax({
+
+                    url: "{{ path('triQ') }}",
+
+                    type: 'GET',
+
+                    data: {
+                        'tri': value1
+                    },
+
+                    success: function (retour) {
+                        if (retour) {
+
+                            $('#t tbody#search').empty();
+                            $.each(JSON.parse(retour), function (i, quiz) {
+                                $('#t tbody#all').hide();
+                                $('#t tbody#search').append('<tr><td>' + quiz.id + '</td>' +
+                                    '<td>' + quiz.nom_quiz+ ' </td> '+
+                                    '<td> <button  type="button" class="btn btn-dark" > <a href="'+ quiz.id +'">Afficher</a> </button></td>' +
+                                    '<td> <button  type="button" class="btn btn-dark" ><a href="'+ quiz.id +'/edit">Modifier</a></button> </td></tr>');
+                            });
+
+                        } else {
+                            $('#t tbody#all').show();
+                            $('#t tbody#search').empty();
+                            $('#t tbody#search').fadeIn('fast');
+                        }
+                    },
+                });
+
+                return false;
+
+            });
+
+        });
+    </script>
+{% endblock %}

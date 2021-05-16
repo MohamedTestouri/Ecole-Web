@@ -1,0 +1,15 @@
+{% extends 'back/base.html.twig' %}
+{% block title %}Edit Reclamation{% endblock %}
+
+{% block main %}
+    <h1 align="center">MODIFIER RECLAMATION</h1>
+
+
+    {{ include('reclamation/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <div style="text-align: right" >
+        <button  class="btn btn-dark" >
+            <a href="{{ path('reclamation_showByUser', {'id':1} )}}" align="center">Retour à la liste des réclamations</a>
+        </button>
+    </div>
+{% endblock %}

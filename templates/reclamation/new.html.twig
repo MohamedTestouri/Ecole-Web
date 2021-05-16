@@ -1,0 +1,16 @@
+{% extends 'back/base.html.twig' %}
+{% block title %}New Reclamation{% endblock %}
+
+{% block main %}
+
+    <h1 style="text-align: center"> AJOUTER UNE NOUVELLE RECLAMATION </h1>
+        <div style="text-align: center">
+            {{ include('reclamation/_form.html.twig') }}
+
+            <div style="text-align: right" >
+                <button  class="btn btn-dark" >
+                    <a href="{{ path('reclamation_showByUser', {'id':1} )}}" align="center">Retour à la liste des réclamations</a>
+                </button>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+
+{% extends 'base.html.twig' %}
+
+
+
+ {% block main %}
+     <!-- ======= Courses Section ======= -->
+     <section id="courses" class="courses">
+         {% for event in eventclients %}
+             <div class="container" data-aos="fade-up">
+
+                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+                     <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                         <div class="course-item">
+
+                             <div class="course-content">
+                                 <div><img src="{{ asset('uploads/images/' ~ event.image) }}"
+                                      width="300" height="300"></div>
+                             <br>
+                                 <br>
+
+                                 <div class="d-flex justify-content-between align-items-center mb-3">
+                                     <h4 align="center">{{ event.nom }}</h4>
+                                     <a href="{{ path('participer')}}"><img src="https://img.icons8.com/dusk/64/000000/event-accepted.png"/></a>
+                                    {#  <p class="price">{{ tableformation.Prix }}</p>#}
+                                 </div>
+
+
+                                 <div class="d-flex justify-content-between align-items-center mb-3">
+
+
+                                 </div>
+
+                              <h3><a href="{{ path('event_show',{'id':event.id}) }}">Détail</a></h3>
+
+                             </div>
+                         </div>
+                     </div> <!-- End Course Item-->
+                 </div>
+             </div>
+         {% endfor %}
+         {{ knp_pagination_render(eventclients) }}
+     </section><!-- End Courses Section -->
+
+
+
+
+ {% endblock %}
+
+
+
+

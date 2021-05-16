@@ -1,0 +1,8 @@
+{% extends 'back/index.html.twig' %}
+{% block title %}Add Categorie{% endblock %}
+{% form_theme formaj 'bootstrap_4_layout.html.twig' %}
+{% block bodyback %}
+    {{ form_start(formaj, {'attr':{'novalidate':'novalidate'}}) }}
+    {{ form_end(formaj) }}
+
+{% endblock %}

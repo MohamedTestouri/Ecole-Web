@@ -1,0 +1,43 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}QusetionQuiz index{% endblock %}
+
+{% block bodyback %}
+    <h1 style="text-align: center">Qusetion Quiz LISTE</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+
+                <th>Afficher</th>
+                <th>Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for qusetion_quiz in qusetion_quizzes %}
+            <tr>
+                <td>{{ qusetion_quiz.id }}</td>
+
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                    <a href="{{ path('qusetion_quiz_show', {'id': qusetion_quiz.id}) }}">Afficher</a>
+                    </button>
+
+                </td>
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                    <a href="{{ path('qusetion_quiz_edit', {'id': qusetion_quiz.id}) }}">Modifier</a>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('qusetion_quiz_new') }}">Create new</a>
+{% endblock %}

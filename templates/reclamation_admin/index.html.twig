@@ -1,0 +1,101 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Reclamation index{% endblock %}
+
+{% block bodyback%}
+
+    <h1 align="center"> GESTION RECLAMATIONS </h1>
+
+
+    {% block search %}
+        <div style=" float:right;">
+            <form method="post" action="{{ path('recherche_admin') }}">
+                <li class="nav-item nav-search"><a class="nav-link nav-link-search" href="#"><i class="ficon ft-search" ></i></a>
+                    <div class="search-input" >
+                        <input class="input" type="text" name="rs" placeholder="search...">
+                    </div>
+                </li>
+            </form>
+        </div>
+    {% endblock %}
+    <table class="table">
+        <tr>
+            <td>
+                <label>Filtré par : </label>
+            </td>
+            <td>
+                <button  type="button" class="btn btn-dark" >
+                    <a href="{{ path('reclamation_index') }}">All</a>
+                </button>
+            </td>
+            <td>
+                <button  type="button" class="btn btn-dark" >
+                    <a href="{{ path('reclamation_index_traite') }}">Traité</a>
+                </button>
+            </td>
+            <td>
+                <button  type="button" class="btn btn-dark" >
+                    <a href="{{ path('reclamation_index_nontraite') }}">Non Traité</a>
+                </button>
+            </td>
+        </tr>
+    </table>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Categorie</th>
+                <th>Commentaire</th>
+                <th>Date_reclamation</th>
+                <th>Etat</th>
+                <th>Afficher</th>
+                <th>Traitement</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.categorie.type }}</td>
+                <td>{{ reclamation.commentaire }}</td>
+                <td>{{ reclamation.dateReclamation ? reclamation.dateReclamation|date('Y-m-d') : '' }}</td>
+                <td>{{ reclamation.etat }}</td>
+
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                        <a href="{{ path('reclamation_show_admin', {'id': reclamation.id}) }}">Afficher</a>
+                    </button>
+                </td>
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                        <a href="{{ path('traitement_new', {'id': reclamation.id}) }}">Traiter</a>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+            <td>
+                <button  type="button" class="btn btn-dark" >
+                    <a href="{{ path('im') }}">Imprimer</a>
+                </button>
+            </td>
+            <td>
+                <button  type="button" class="btn btn-dark" >
+                    <a href="{{ path('stat') }}">statistiques</a>
+                </button>
+            </td>
+
+
+
+{% endblock %}

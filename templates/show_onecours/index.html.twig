@@ -1,0 +1,60 @@
+{% extends 'back/base.html.twig' %}
+ {% block main %}
+
+     <!-- ======= Cource Details Section ======= -->
+     <section id="course-details" class="course-details">
+         <div class="container" data-aos="fade-up">
+
+             <div class="row">
+                 <div class="col-lg-8">
+                     <img src="/assets/img/cours/{{ a.imageC }}" class="img-fluid" alt="..." style="width: 30%; height:auto;">
+
+                     <h3>{{ a.Titre }}</h3>
+                     <p>
+                         {{ a.Contenu }}
+                     </p>
+                 </div>
+                 <div class="col-lg-4">
+
+                     <div class="course-info d-flex justify-content-between align-items-center">
+                         <h5>{% trans %}Code{% endtrans %}</h5>
+                         <p><a href="#">{{ a.Code }}</a></p>
+                     </div>
+
+                     <div class="course-info d-flex justify-content-between align-items-center">
+                         <h5>{% trans %}Difficultée{% endtrans %}</h5>
+                         <p>{{ a.Duree }}</p>
+                     </div>
+
+                     <div class="course-info d-flex justify-content-between align-items-center">
+                         <video width="400" height="240" controls>
+                             <source src="/assets/img/cours/{{ a.filenameVIDEO }}">
+                         </video>
+                     </div>
+
+                     <div class="course-info d-flex justify-content-between align-items-center">
+                         <h5>{% trans %}Document PDF{% endtrans %}</h5>
+                         <a href ="{{  asset('/assets/img/cours/' ~  a.filenamePDF)}} "
+                            class="btn btn-dark">PDF
+                         </a>
+                     </div>
+
+
+
+
+                 </div>
+             </div>
+
+         </div>
+     </section><!-- End Cource Details Section -->
+
+
+
+
+
+     </div>
+     </div>
+
+
+
+ {% endblock %}

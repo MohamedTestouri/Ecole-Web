@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="6jKMPQp" resname="Du plus cher au moins cher">
+        <source>From the most expensive to the cheapest</source>
+        <target>Du plus cher au moins cher</target>
+      </trans-unit>
+      <trans-unit id="0Mf7DX2" resname="Du moins cher au plus cher">
+        <source>From the cheapest to the most expensive</source>
+        <target>Du moins cher au plus cher</target>
+      </trans-unit>
+      <trans-unit id="uq3fcPt" resname="Type">
+        <source>Type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="VMMk9sE" resname="Prix">
+        <source>Price</source>
+        <target>Prix</target>
+      </trans-unit>
+      <trans-unit id="cdC61Cr" resname="Durée">
+        <source>Duration</source>
+        <target>Durée</target>
+      </trans-unit>
+      <trans-unit id="NA9GMDP" resname="Code">
+        <source>Code</source>
+        <target>Code</target>
+      </trans-unit>
+      <trans-unit id="YCHS2VL" resname="Difficultée">
+        <source>Difficulty</source>
+        <target>Difficultée</target>
+      </trans-unit>
+      <trans-unit id="CJvNbfF" resname="Document PDF">
+        <source>PDF Document</source>
+        <target>Document PDF</target>
+      </trans-unit>
+      <trans-unit id="2kVWntD" resname="Apprendre aujourd'hui,&lt;br&gt;Diriger demain">
+        <source>Learn Today, Lead Tomorrow</source>
+        <target>Apprendre Aujourd'hui,Diriger Demain</target>
+      </trans-unit>
+      <trans-unit id="5EBpGEp" resname=".Tous les droits sont resérvés">
+        <source>.All rights reserved</source>
+        <target>.Tous les droits sont resérvés</target>
+      </trans-unit>
+      <trans-unit id="TnEolJQ" resname="Meilleur formation">
+        <source>Best Training</source>
+        <target>Meilleur formation</target>
+      </trans-unit>
+      <trans-unit id="AsE5ZC8" resname="Cours">
+        <source>Classes</source>
+        <target>Cours</target>
+      </trans-unit>
+      <trans-unit id="_8e_aDo" resname="Formations">
+        <source>Training</source>
+        <target>Formations</target>
+      </trans-unit>
+      <trans-unit id="8CJuGyz" resname="Liste des commentaires">
+        <source>List Of Comments</source>
+        <target>Liste des commentaires</target>
+      </trans-unit>
+      <trans-unit id="4jY31ui" resname="Commentaire de">
+        <source>Comment From</source>
+        <target>Commentaire de</target>
+      </trans-unit>
+      <trans-unit id="e1pHRc_" resname="Publié le">
+        <source>Published on</source>
+        <target>Publié le</target>
+      </trans-unit>
+      <trans-unit id="goxluGo" resname="Ajouter un commentaire">
+        <source>Add A Comment</source>
+        <target>Ajouter un commentaire</target>
+      </trans-unit>
+      <trans-unit id="AHiB1HS" resname="Mes Réclamations">
+        <source>My Complaints</source>
+        <target>Mes Réclamations</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,30 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Traitement{% endblock %}
+
+{% block bodyback %}
+
+    <h1 align="center">AFFICHER UN TRAITEMENT</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ traitement.id }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ traitement.commentaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="text-align: right" >
+        <button  class="btn btn-dark" >
+            <a href="{{ path('traitement_index') }}" align="center">Retour à la liste des traitements</a>
+        </button>
+    </div>
+
+
+    {{ include('traitement/_delete_form.html.twig') }}
+{% endblock %}

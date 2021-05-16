@@ -1,0 +1,53 @@
+
+
+{% extends 'back/index.html.twig' %}
+
+{% block title %}TagCours index{% endblock %}
+{% block lien %}
+
+
+{% endblock %}
+{% block bodyback %}
+<a class="btn btn-primary btn-block" href="{{ path('tag_cours_new') }}">Create new</a>
+
+
+
+<table class="table" id="t">
+
+    <tr>
+
+        <th>Id</th>
+        <th>Tag</th>
+        <th>Formations</th>
+        <th>actions</th>
+    </tr>
+
+    <tbody id="all">
+
+        {% for tag_cour in tag_cours %}
+            <tr>
+                <td>{{ tag_cour.id }}</td>
+                <td>{{ tag_cour.tag.getTagName }}</td>
+                <td>{{ tag_cour.formation.getTitre }}</td>
+                <td>
+                    <a href="{{ path('tag_cours_show', {'id': tag_cour.id}) }}">show</a>
+                    <a href="{{ path('tag_cours_edit', {'id': tag_cour.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="2">no records found</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <tbody id="search"></tbody>
+
+
+
+
+</table>
+{% endblock %}
+
+
+
+

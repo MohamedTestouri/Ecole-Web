@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="2kVWntD" resname="Apprendre aujourd'hui,&lt;br&gt;Diriger demain">
+        <source>Apprendre aujourd'hui,&lt;br&gt;Diriger demain</source>
+        <target>Learn Today, Lead Tomorrow</target>
+      </trans-unit>
+      <trans-unit id="5EBpGEp" resname=".Tous les droits sont resérvés">
+        <source>.Tous les droits sont resérvés</source>
+        <target>.All rights reserved</target>
+      </trans-unit>
+      <trans-unit id="TnEolJQ" resname="Meilleur formation">
+        <source>Meilleur formation</source>
+        <target>Best Training</target>
+      </trans-unit>
+      <trans-unit id="AsE5ZC8" resname="Cours">
+        <source>Cours</source>
+        <target>Classes</target>
+      </trans-unit>
+      <trans-unit id="_8e_aDo" resname="Formations">
+        <source>Formations</source>
+        <target>Training</target>
+      </trans-unit>
+      <trans-unit id="6jKMPQp" resname="Du plus cher au moins cher">
+        <source>Du plus cher au moins cher</source>
+        <target>From the most expensive to the cheapest</target>
+      </trans-unit>
+      <trans-unit id="0Mf7DX2" resname="Du moins cher au plus cher">
+        <source>Du moins cher au plus cher</source>
+        <target>From the cheapest to the most expensive</target>
+      </trans-unit>
+      <trans-unit id="uq3fcPt" resname="Type">
+        <source>Type</source>
+        <target>Type</target>
+      </trans-unit>
+      <trans-unit id="VMMk9sE" resname="Prix">
+        <source>Prix</source>
+        <target>Price</target>
+      </trans-unit>
+      <trans-unit id="cdC61Cr" resname="Durée">
+        <source>Durée</source>
+        <target>Duration</target>
+      </trans-unit>
+      <trans-unit id="NA9GMDP" resname="Code">
+        <source>Code</source>
+        <target>Code</target>
+      </trans-unit>
+      <trans-unit id="YCHS2VL" resname="Difficultée">
+        <source>Difficultée</source>
+        <target>Difficulty</target>
+      </trans-unit>
+      <trans-unit id="CJvNbfF" resname="Document PDF">
+        <source>Document PDF</source>
+        <target>PDF Document</target>
+      </trans-unit>
+      <trans-unit id="8CJuGyz" resname="Liste des commentaires">
+        <source>Liste des commentaires</source>
+        <target>List Of Comments</target>
+      </trans-unit>
+      <trans-unit id="4jY31ui" resname="Commentaire de">
+        <source>Commentaire de</source>
+        <target>Comment From</target>
+      </trans-unit>
+      <trans-unit id="e1pHRc_" resname="Publié le">
+        <source>Publié le</source>
+        <target>Published on</target>
+      </trans-unit>
+      <trans-unit id="goxluGo" resname="Ajouter un commentaire">
+        <source>Ajouter un commentaire</source>
+        <target>Add A Comment</target>
+      </trans-unit>
+      <trans-unit id="AHiB1HS" resname="Mes Réclamations">
+        <source>Mes Réclamations</source>
+        <target>My Complaints</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

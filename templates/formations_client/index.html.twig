@@ -1,0 +1,202 @@
+
+
+
+{% extends 'back/base.html.twig' %}
+{% block javascripts %}
+
+
+{% endblock %}
+ {% block main %}
+     <center>
+         <div class="d-flex justify-content-between align-items-center mb-3">
+             <h4></h4>
+
+         </div>
+         <form style="display: inline;"class="form-inline my-2 my-lg-0"  method="post" action="{{ path("rechercheF") }}" class="ficon ft-search">
+             <div class="col-lg-3 col-md-6 col-12">
+                 <input class="form-control mr-sm-2" name="search" type="search" placeholder="Rechercher une formation... " aria-label="Search" >
+             </div>
+             <div class="d-flex justify-content-between align-items-center mb-3">
+             </div>
+             <div class="col-lg-3 col-md-6 col-12">
+             <a href="{{ path('triDESC') }}">{% trans %}Du plus cher au moins cher {% endtrans %}</a>
+             </div>
+             <div class="d-flex justify-content-between align-items-center mb-3">
+             </div>
+             <div class="col-lg-3 col-md-6 col-12">
+             <a href="{{ path('triASC') }}">{% trans %}Du moins cher au plus cher{% endtrans %} </a>
+             </div>
+
+         </form>
+         <select id="currency" name="currency1">
+             <option value="EUR" >€</option>
+             <option value="USD" >$</option>
+             <option value="TND" >TND</option>
+             <option value="BTC" >₿</option>
+
+         </select>
+         <select id="currency1" hidden> </select>
+
+     </center>
+
+     <!-- ======= Courses Section ======= -->
+     <section id="courses" class="courses">
+         <div class="row">
+
+         {% for tableformation in tableformations %}
+             <div class="col-lg-3 col-md-6 col-12">
+             <div class="container" data-aos="fade-up">
+
+                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+
+                         <div class="course-item">
+                             {% if tableformation.filename %}
+                                 <img src="/assets/img/cours/{{ tableformation.filename }}" class="img-fluid" alt="..." style="width: 100%; height:auto;">
+                             {% endif %}
+                             <div class="course-content">
+
+                                 <div class="d-flex justify-content-between align-items-center mb-3">
+                                     <h4>{{ tableformation.Type }}</h4>
+                                     <p class="price_cc" id="prix_currency">{{ tableformation.Prix  }}</p>
+                                 </div>
+
+                                 <div class="d-flex justify-content-between align-items-center mb-3">
+
+                                     <p class="price">{{tableformation.Duree }}</p>
+                                 </div>
+
+                                 <h3><a href="{{ path('show_cours', {'id': tableformation.id}) }}">{{ tableformation.Titre }}</a></h3>
+
+                                 <p>{{ tableformation.Description }}</p>
+                                 <table>
+
+                                         <td>
+                                             <button type="button" id="checkout-button" class="btn btn-dark"  onClick="myFunction({{tableformation.id }})" >
+                                                 <span style="color:#5fcf80">Participer</span>
+                                             </button>
+
+                                         </td>
+                                         <td>
+                                             <button align="center" type="button" class="btn btn-dark" >
+                                                 <a href="{{ path('reclamation_new',{'titre': tableformation.Titre  }) }}">Réclamer</a>
+                                             </button>
+                                         </td>
+
+                                     <td><button align="center" type="button" class="btn btn-dark">
+                                             <a href="{{ path('show_quiz', {'id': tableformation.id}) }}">Quiz</a>
+                                         </button></td>
+                                 </table>
+                             </div>
+                         </div>
+                     </div> <!-- End Course Item-->
+                 </div>
+             </div>
+         {% endfor %}
+         </div>
+     </section><!-- End Courses Section -->
+     <div class="navigation">
+         {{ knp_pagination_render(tableformations) }}
+     </div>
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script>
+         $( document ).ready(function() {
+
+
+
+             $("#currency").click(function(e) {
+                 /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                 var value1 = $(this).val();
+
+
+
+                 console.log(value1);
+
+                 /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+
+                 $.ajax({
+
+                     url: "{{ path('currency') }}",
+
+                     type: 'GET',
+
+                     data: {
+                         'currency': value1,
+
+                     },
+
+                     success: function (cc) {
+                         if (cc ) {
+                             var elements =$(".price_cc");
+                             console.log(elements.length);
+
+
+
+
+                             for (var i = 0, length = elements.length; i < length; i++) {
+                                 t=elements[i].innerHTML*cc;
+                                 elements[i].innerHTML=t.toFixed(2);
+                                 }
+
+
+
+
+
+                         }
+                         else {
+                             console.log('erreur');
+
+                         }
+                     },
+                 });
+
+                 return false;
+
+             });
+
+
+         });
+     </script>
+
+
+
+
+
+
+
+     <script src="https://js.stripe.com/v3/"></script>
+     <script type="text/javascript">
+         // Create an instance of the Stripe object with your publishable API key
+         var stripe = Stripe('pk_test_51Il09yEFFHRi1CgQ8OcOIYsp5C1f1Rikl9wPK49YZwW0GscLQuVFdzSH7Mg5Zt9MBkM04gcUqZQsPxMnQkjfusOl00D3BeZIj6');
+         var checkoutButton = document.getElementById('checkout-button');
+
+         function myFunction(id) {
+             // Create a new Checkout Session using the server-side endpoint you
+             // created in step 3.
+             fetch('/formations/create-checkout-session/'+ id, {
+                 method: 'POST',
+             })
+                 .then(function(response) {
+                     return response.json();
+                 })
+                 .then(function(session) {
+                     return stripe.redirectToCheckout({ sessionId: session.id });
+                 })
+                 .then(function(result) {
+                     // If `redirectToCheckout` fails due to a browser or network
+                     // error, you should display the localized error message to your
+                     // customer using `error.message`.
+                     if (result.error) {
+                         alert(result.error.message);
+                     }
+                 })
+                 .catch(function(error) {
+                     console.error('Error:', error);
+                 });
+         }
+     </script>
+
+
+ {% endblock %}
+

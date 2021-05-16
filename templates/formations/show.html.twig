@@ -1,0 +1,51 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Tableformations{% endblock %}
+
+{% block bodyback %}
+    <h1 align="center">AFFICHER UNE FORMATIONS</h1>
+    <div style="text-align: center" >
+        <button  class="btn btn-dark" >
+            <a href="{{ path('form_index') }}" align="center">Retour à la liste des formations</a>
+        </button>
+    </div>
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ tableformation.id }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ tableformation.Code }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ tableformation.Titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ tableformation.Description }}</td>
+            </tr>
+            <tr>
+                <th>Duree</th>
+                <td>{{ tableformation.Duree }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ tableformation.Type }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ tableformation.Prix }}</td>
+            </tr>
+            <tr>
+                <th>Etat</th>
+                <td>{{ tableformation.Etat }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    {{ include('formations/_delete_form.html.twig') }}
+{% endblock %}

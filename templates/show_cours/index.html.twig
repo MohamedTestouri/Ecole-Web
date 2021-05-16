@@ -1,0 +1,97 @@
+{% extends 'back/base.html.twig' %}
+ {% block main %}
+
+    <!-- ======= Cource Details Section ======= -->
+    <section id="course-details" class="course-details">
+        <div class="container" data-aos="fade-up">
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <img src="/assets/img/cours/{{ t.filename }}" class="img-fluid" alt="..." style="width: 30%; height:auto;">
+                    <h3>{{ t.Titre }}</h3>
+                    <p>
+                        {{ t.Description }}
+                    </p>
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>{% trans %}Type{% endtrans %}</h5>
+                        <p><a href="#">{{ t.Type }}</a></p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>{% trans %}Prix{% endtrans %}</h5>
+                        <p>{{ t.Prix }}</p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <h5>{% trans %}Durée{% endtrans %}</h5>
+                        <p>{{t.Duree }}</p>
+                    </div>
+
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <div>
+                        <h2>{% trans %}Liste des commentaires{% endtrans %}</h2>
+                        {% for comment in t.comments %}
+                            <h3>{% trans %}Commentaire de{% endtrans %} {{ comment.nickname }}</h3>
+                        <p>{% trans %}Publié le{% endtrans %} {{ comment.createdAt|date("d/m/Y H:i") }}</p>
+                            <div>
+                                {{ comment.content }}
+                            </div>
+                        {% endfor %}
+                        </div>
+                    </div>
+                    <div class="course-info d-flex justify-content-between align-items-center">
+                        <div id="ajout-commentaire" >
+                            <h2>{% trans %}Ajouter un commentaire{% endtrans %}</h2>
+                            {{ form(commentForm) }}
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </section><!-- End Cource Details Section -->
+
+
+
+
+
+     <section id="courses" class="courses">
+         <div class="row">
+         {% for tablecour in cours %}
+
+             <div class="col-lg-3 col-md-6 col-12">
+             <div class="container" data-aos="fade-up">
+
+                 <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+
+                         <div class="course-item">
+                             {% if tablecour.imageC %}
+                                 <img src="/assets/img/cours/{{ tablecour.imageC }}" class="img-fluid" alt="..." style="width: 100%; height:auto;">
+                             {% endif %}
+                             <div class="course-content">
+                                 <div class="d-flex justify-content-between align-items-center mb-3">
+                                     <h4>{{ tablecour.Duree }}</h4>
+                                    
+                                 </div>
+
+                                 <h3><a href="{{ path('show_onecours', {'id':tablecour.id}) }}">{{ tablecour.Titre }}</a></h3>
+                                 <p>{{ tablecour.Contenu }}</p>
+                             </div>
+
+                     </div> <!-- End Course Item-->
+                 </div>
+             </div>
+             </div>
+         {% endfor %}
+         </div>
+     </section><!-- End Courses Section -->
+
+
+ {% endblock %}

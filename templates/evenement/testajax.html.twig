@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+/* Cette partie correspond à l’affichage de la liste des étudiants en listant leurs informations dans un tableau */
+<h1 id="dd1"> Liste des événements</h1>
+</br>
+<div style="margin-right:50px;" class="btn btn-primary" ><a href=""> Ajouter Etudiant</a></div>
+    </div>
+    <input type="text" id="search" class="form-control" placeholder="Search">
+    <div>
+        <table border ="1" id="t" class="table table-hover table-dark">
+            <thead class="thead-dark">
+            <tr>
+                <td>Nom event</td>
+                <td>Nom cat</td>
+                <td>Description Event</td>
+                <td>Image</td>
+                <td>Date début</td>
+                <td>Date fin</td>
+            </tr>
+            </thead>
+            <tbody id="all">
+            {% for event in events %}
+                <tr>
+                    <td>
+                        {{ event.nom }}
+                    </td>
+                    <td>
+                        {{  event.catEvent.libelle }}
+                    </td>
+                    <td>
+                        {{ event.description }}
+                    </td>
+                    <td><img src="{{ asset('uploads/images/' ~ event.image) }}"
+                             width="100" height="100"></td>
+                    <td>{{ event.datedeb|date('Y-m-d')}} </td>
+                    <td>{{ event.datefin|date('Y-m-d') }} </td>
+                    <td>
+                    <td> <a href="{{ path('Eventmodif',{'id':event.id}) }}"> <img src="https://img.icons8.com/material-sharp/24/000000/edit--v1.png"/></a></td>
+                    <td><a href="{{ path('Eventsupp',{'id':event.id}) }}"><img src="https://img.icons8.com/windows/32/000000/delete-forever.png"/></a></td>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="9">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tbody id="search">
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+</script>
+<script>
+    $( document ).ready(function() {
+        $("#search").keyup(function(e){
+            /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+            var value = $(this).val();
+            /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+            $.ajax({
+                /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                url : "{{ path('searcheventx') }}",
+                /* La méthode utilisée pour transférer les données est GET */
+                type : 'GET',
+                /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                data: {
+                    'searchValue' : value
+                },
+                /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                success : function(retour){
+                    if(retour){
+                        $('#t tbody#search').empty();
+                        $.each(JSON.parse(retour), function(i, obj) {
+                            $('#t tbody#all').hide();
+                            $('#t tbody#search').append('<tr><td> '+obj.nom+'  </td><td>    '+obj.catEvent.libelle+'  </td><td>'+obj.description+' </td><td>'+obj.datedeb|date('Y-m-d')+'  </td><td>'+obj.datefin|date('Y-m-d')+'  </td><td><a href="Eventmodif/'+obj.id+'">modifier</a> </br><a href="Eventsupp/'+obj.id+'">supprimer</a></td></tr>');
+                        });
+                    }
+                    else
+                    {
+                        $('#t tbody#all').show();
+                        $('#t tbody#search').empty();
+                        $('#t tbody#search').fadeIn('fast');
+                    }
+                },
+            });
+            return false;
+        });
+    });
+</script>
+

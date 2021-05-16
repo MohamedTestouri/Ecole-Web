@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+
+{% block pub %}
+
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+
+
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            {% for publicite in publicites %}
+            <div class="carousel-item ">
+                <img src="/assets/img/publicity/{{ publicite.image }}"  alt="{{ publicite.image }}">
+
+
+                <div class="carousel-caption text-left">
+                    <img src="/assets/QR/{{ publicite.id }}{{ publicite.libelle }}.jpg"  alt="">
+                    <h1 STYLE="color: black;">{{ publicite.libelle }}</h1>
+                  <p STYLE="color: black;">{{  publicite.description }}</p>
+                    <p STYLE="color: black;" >{{  publicite.codePromo }}</p>
+                    <p><a class="btn btn-lg btn-primary" href="{{ path('show_cours', {'id': publicite.getIdformation().getId()}) }}" role="button">Vérifier l'offre </a></p>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="carousel-item active">
+                <img src="../../../assets/img/about.jpg" alt="Chicago">
+                <div class="carousel-caption">
+                    <h1>Another example headline.</h1>
+                    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+
+    </div>
+
+{% endblock%}
+
+    {% block recommandations %}
+    {% for tableformation in t %}
+
+        <div class="col-lg-3 col-md-6 col-12">
+            <div class="container" data-aos="fade-up">
+
+                <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+
+                    <div class="course-item">
+                        {% if tableformation.filename %}
+                            <img src="/assets/img/cours/{{ tableformation.filename }}" class="img-fluid" alt="..." style="width: 100%; height:auto;">
+                        {% endif %}
+                        <div class="course-content">
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4>{{ tableformation.type }}</h4>
+                                <p class="price">{{ tableformation.prix }}</p>
+                            </div>
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                                <p class="price">{{tableformation.duree }}</p>
+                            </div>
+
+                            <h3><a href="{{ path('show_cours', {'id': tableformation.id}) }}">{{ tableformation.titre }}</a></h3>
+                            <p>{{ tableformation.description }}</p>
+                            <table>
+                                <td><button  type="button" class="btn btn-dark" >
+                                        <a  href="{{ path('participation_add', {'id': tableformation.id}) }} " onclick="return confirm('are u sure?')">Participer</a>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button align="center" type="button" class="btn btn-dark" >
+                                        <a href="{{ path('reclamation_new',{'titre': tableformation.titre  }) }}">Réclamer</a>
+                                    </button>
+                                </td>
+                            </table>
+                        </div>
+                    </div>
+                </div> <!-- End Course Item-->
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

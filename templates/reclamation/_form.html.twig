@@ -1,0 +1,33 @@
+
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+                {{ form_errors(form.commentaire) }}
+                {{ form_label(form.commentaire,"Commentaire : ") }}
+                {{ form_widget(form.commentaire,{'attr':{'class':'form-control','style':"width: 200px;margin-left:30px "} } ) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+                {{ form_errors(form.captcha) }}
+                {{ form_label(form.captcha,"Captcha : ") }}
+                {{ form_widget(form.captcha,{'attr':{'class':'form-control','style':"width: 200px;margin-left:30px "} } ) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+
+
+<div style="text-align: center">
+    <button  class="btn btn-dark">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}

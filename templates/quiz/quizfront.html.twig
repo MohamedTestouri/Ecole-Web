@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block css %}
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>About - Mentor Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{{ asset('assets/img/favicon.png')}}" rel="icon">
+    <link href="{{ asset('assets/img/apple-touch-icon.png')}}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{{ asset('assets/vendor/animate.css/animate.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/aos/aos.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/remixicon/remixicon.css')}}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet">
+       <link href="{{ asset('assets/css/quiz1.css')}}" rel="stylesheet">
+    <!-- =======================================================
+    * Template Name: Mentor - v4.1.0
+    * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+    * Author: BootstrapMade.com
+    * License: https://bootstrapmade.com/license/
+    ======================================================== -->
+    {% endblock %}
+
+</head>
+
+<body>
+
+<!-- ======= Header ======= -->
+<header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+        <h1 class="logo me-auto"><a href="index.html">Best Training</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+        <nav id="navbar" class="navbar order-last order-lg-0">
+
+            <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+
+
+
+    </div>
+</header><!-- End Header -->
+<section id="log" class="about">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row">
+            <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
+                <img src="assets/img/about.jpg" class="img-fluid" alt="">
+            </div >
+            {% block body %}
+                <script>
+                    var i=0;
+                    var score=0;
+
+                </script>
+            <main>
+                <!-- creating a modal for when quiz ends -->
+                <div class="modal-container" id="timer" style="display: none" >
+
+                    <h1> Time : <span id="demo"></span> </h1>
+                </div>
+
+                <div class="modal-container" id="start" style="display: none">
+
+                    <div class="modal-content-container1">
+
+                        <h1> Quiz </h1>
+
+                        <div class="grade-details">
+                            <p>Welcome</p>
+                            <p>you get two points when your answer is right </p>
+                            <p>if you try to open other window you will fail the quiz</p>
+                            <p>you get zero when you don't check </p>
+
+                        </div>
+
+                        <div class="next-button-container" >
+
+                            <button onmousedown="toggleDiv('mydiv');">Start</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                {% with %}
+                    {% set i = 1 %}
+
+
+                  {%for t in quiz%}
+                      {% if i == 1 %}
+
+                      <div id="mydivon" style="display:none">
+                    <script>
+                       i++;
+                    </script>
+
+                <div class="game-quiz-container1">
+
+                    <div class="game-details-container">
+
+                        <h1> Question : <span id="question-number"></span> <script>document.write(i);</script>  / 5</h1>
+
+                    </div>
+
+                    <div class="game-question-container1">
+                        <h1 id="display-question">{{ t.question_a }} ?</h1>
+                    </div>
+
+                    <div class="game-options-container1">
+
+                        <div class="modal-container" id="option-modal">
+
+                         
+
+                        </div>
+
+                        <span>
+                    <input type="radio" id="choix11" name="option" class="radio" value="optionA"  />
+                    <label for="option-one" class="option" id="option-one-label">{{ t.reponse }}</label>
+                </span>
+                    <script>
+
+                    </script>
+
+
+                        <span>
+                    <input type="radio" id="choix12" name="option" class="radio" value="optionB"  />
+                    <label for="option-two" class="option" id="option-two-label">{{ t.reponse_1 }}</label>
+                </span>
+
+
+                        <span>
+                    <input type="radio" id="choix13" name="option" class="radio" value="optionC"  />
+                    <label for="option-three" class="option" id="option-three-label">{{ t.reponse_2 }}</label>
+                </span>
+
+
+                        <span>
+                    <input type="radio" id="choix14" name="option" class="radio" value="optionD"  />
+                    <label for="option-four" class="option" id="option-four-label">{{ t.reponse_3 }}</label>
+                </span>
+
+
+                    </div>
+
+                    <div class="next-button-container">
+                        <button style="margin-left: 50%" onmousedown="toggleDiv('mydiv');">Next Question</button>
+                    </div>
+
+                </div>
+                      </div>
+
+
+                      {% endif %}
+                      {% set i = 2 %}
+
+
+                  {% endfor %}
+                {% endwith %}
+                {% with %}
+                    {% set i = 1 %}
+
+
+                    {%for t in quiz%}
+                        {% if i == 2 %}
+                            <div id="mydivoff" style="display:none">
+                                <script>
+                                    i++;
+                                </script>
+
+
+                                <div class="game-quiz-container">
+
+                                    <div class="game-details-container">
+
+                                        <h1> Question : <span id="question-number"></span> <script>document.write(i);</script>  / 5</h1>
+
+                                    </div>
+
+                                    <div class="game-question-container">
+                                        <h1 id="display-question">{{ t.question_a }} ?</h1>
+                                    </div>
+
+                                    <div class="game-options-container">
+
+                                        <div class="modal-container" id="option-modal">
+
+
+
+                                        </div>
+
+                                        <span>
+                    <input type="radio" id="choix21" name="option" class="radio1" value="optionA1" />
+                    <label1 for="option-one1" class="option1" id="option-one-label1">{{ t.reponse_3}}</label1>
+                </span>
+
+
+                                        <span>
+                    <input type="radio" id="choix22" name="option" class="radio1" value="optionB1" />
+                    <label1 for="option-two1" class="option1" id="option-two-label1">{{ t.reponse_1 }}</label1>
+                </span>
+
+
+                                        <span>
+                    <input type="radio" id="choix23" name="option" class="radio1" value="optionC1" />
+                    <label1 for="option-three1" class="option1" id="option-three-label1">{{ t.reponse_2 }}</label1>
+                </span>
+
+
+                                        <span>
+                    <input type="radio" id="choix24" name="option" class="radio1" value="optionD1" />
+                    <label1 for="option-four-2" class="option1" id="option-four-label1">{{ t.reponse}}</label1>
+                </span>
+
+
+
+                                    </div>
+                                    <div class="next-button-container" style="margin-left: 10%">
+                                        <button onmousedown="toggleDiv1('mydiv');">previous Question</button>
+                                        <button onmousedown="toggleDiv('mydiv');">Next Question</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+                        {% set i = i+1 %}
+
+
+                    {% endfor %}
+
+
+                {% endwith %}
+                {% with %}
+                    {% set i = 1 %}
+
+
+                    {%for t in quiz%}
+                        {% if i == 3 %}
+                            <div id="mydiv3" style="display:none">
+                                <script>
+                                    i++;
+                                </script>
+
+
+
+                                <div class="game-quiz-container">
+
+                                    <div class="game-details-container">
+
+                                        <h1> Question : <span id="question-number"></span> <script>document.write(i);</script>  / 5</h1>
+
+                                    </div>
+
+                                    <div class="game-question-container">
+                                        <h1 id="display-question">{{ t.question_a }} ?</h1>
+                                    </div>
+
+                                    <div class="game-options-container">
+
+                                        <div class="modal-container1" id="option-modal">
+
+
+
+                                        </div>
+
+                                        <span>
+                    <input type="radio" id="choix31" name="option1" class="radio" value="optionA2" />
+                    <label2 for="option-one3" class="option" id="option-one-label1">{{ t.reponse_2 }}</label2>
+                </span>
+
+
+                                        <span>
+                    <input type="radio" id="choix32" name="option1" class="radio" value="optionB2" />
+                    <label2 for="option-two1" class="option" id="option-two-label1">{{ t.reponse_1 }}</label2>
+                </span>
+
+                                        <span>
+                    <input type="radio" id="choix33" name="option3" class="radio" value="optionC3" />
+                    <label2 for="option-three" class="option" id="option-three-label2">{{ t.reponse}}</label2>
+                </span>
+
+
+                                        <span>
+                    <input type="radio" id="choix34" name="option1" class="radio" value="optionD4" />
+                    <label2 for="option-four1" class="option" id="option-four-label1">{{ t.reponse_3 }}</label2>
+                </span>
+
+
+                                    </div>
+
+                                    <div class="next-button-container" style="margin-left: 10%">
+                                        <button onmousedown="toggleDiv1('mydiv');">previous Question</button>
+                                        <button onmousedown="toggleDiv('mydiv');">Next Question</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+                        {% set i = i+1 %}
+
+
+                    {% endfor %}
+
+
+                {% endwith %}
+                {% with %}
+                    {% set i = 1 %}
+
+
+                    {%for t in quiz%}
+                        {% if i == 4 %}
+                            <div id="mydiv4" style="display:none">
+                                <script>
+                                    i++;
+                                </script>
+
+
+                                <div class="game-quiz-container">
+
+                                    <div class="game-details-container">
+
+                                        <h1> Question : <span id="question-number"></span> <script>document.write(i);</script>  / 5</h1>
+
+                                    </div>
+
+                                    <div class="game-question-container">
+                                        <h1 id="display-question">{{ t.question_a }} ?</h1>
+                                    </div>
+
+                                    <div class="game-options-container">
+
+
+
+                                        <span>
+                    <input type="radio" id="choix41" name="option1" class="radio" value="optionA2" />
+                    <label3 for="option-one3" class="option" id="option-one-label1">{{ t.reponse_2 }}</label3>
+                </span>
+
+
+                                        <span>
+                    <input type="radio" id="choix42" name="option1" class="radio" value="optionB2" />
+                    <label3 for="option-two1" class="option" id="option-two-label1">{{ t.reponse_1 }}</label3>
+                </span>
+
+                                        <span>
+                    <input type="radio" id="choix43" name="option3" class="radio" value="optionC3" />
+                    <label3 for="option-three-4" class="option" id="option-three-label2">{{ t.reponse }}</label3>
+                </span>
+
+
+                                        <span>
+                    <input type="radio" id="choix44" name="option1" class="radio" value="optionD4" />
+                    <label3 for="option-four1" class="option" id="option-four-label1">{{ t.reponse_3 }}</label3>
+                </span>
+
+
+                                    </div>
+
+                                    <div class="next-button-container" style="margin-left: 10%">
+                                        <button onmousedown="toggleDiv1('mydiv');">previous Question</button>
+                                        <button onmousedown="toggleDiv('mydiv');">Next Question</button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+                        {% set i = i+1 %}
+
+
+                    {% endfor %}
+
+
+                {% endwith %}
+                {% with %}
+                    {% set i = 1 %}
+
+
+                    {%for t in quiz%}
+                        {% if i == 5 %}
+                            <div id="mydiv5" style="display:none">
+                                <script>
+                                    i++;
+                                </script>
+                                <!-- creating a modal for when quiz ends -->
+                                <!--   <div class="modal-container" id="score-modal">
+
+                                       <div class="modal-content-container">
+
+                                           <h1>Congratulations, Quiz Completed.</h1>
+
+                                           <div class="grade-details">
+                                               <p>Attempts : 10</p>
+                                               <p>Wrong Answers : <span id="wrong-answers"></span></p>
+                                               <p>Right Answers : <span id="right-answers"></span></p>
+                                               <p>Grade : <span id="grade-percentage"></span>%</p>
+                                               <p ><span id="remarks"></span></p>
+                                           </div>
+
+                                           <div class="modal-button-container">
+                                               <button onclick="closeScoreModal()">Continue</button>
+                                           </div>
+
+                                       </div>
+                                   </div>-->
+                                <!-- end of modal of quiz details-->
+
+                                <div class="game-quiz-container">
+
+                                    <div class="game-details-container">
+
+                                        <h1> Question : <span id="question-number"></span> <script>document.write(i);</script>  / 5</h1>
+
+                                    </div>
+
+                                    <div class="game-question-container">
+                                        <h1 id="display-question">{{ t.question_a }} ?</h1>
+                                    </div>
+
+                                    <div class="game-options-container">
+
+
+
+                                        <span>
+                    <input type="radio" id="choix51" name="option" class="radio" value="optionA5" />
+                    <label4 for="option-one-5" class="option" id="option-one-label4">{{ t.reponse }}</label4>
+                </span>
+
+
+                                        <span>
+                    <input type="radio" id="choix52" name="option" class="radio" value="optionB2" />
+                    <label4 for="option-two1" class="option" id="option-two-label1">{{ t.reponse_1 }}</label4>
+                </span>
+
+                                        <span>
+                    <input type="radio" id="choix53" name="option" class="radio" value="optionC3" />
+                    <label4 for="option-three" class="option" id="option-three-label2">{{ t.reponse_2 }}</label4>
+                </span>
+
+
+                                        <span>
+                    <input type="radio" id="choix54" name="option" class="radio" value="optionD4" />
+                    <label4 for="option-four1" class="option" id="option-four-label1">{{ t.reponse_3 }}</label4>
+                </span>
+
+
+                                    </div>
+
+                                    <div class="next-button-container" style="margin-left: 10%">
+                                        <button onmousedown="toggleDiv1('mydiv');">previous Question</button>
+                                        <button onmousedown="toggleDiv('mydiv');">Done </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        {% endif %}
+                        {% set i = i+1 %}
+
+
+                    {% endfor %}
+
+
+                {% endwith %}
+
+        <div class="modal-content-container" id="mydiv55" style="display: none">
+
+            <h1 style="text-align: center"> Quiz Completed</h1>
+
+            <div class="grade-details">
+
+                <p style="text-align: center">Wrong Answers : <span id="wrong-answers" style="color: red"  style="text-align: center"></span></p>
+                <p style="text-align: center">Right Answers : <span id="right-answers" style="color: green"></span></p>
+                <p style="text-align: center">Grade :<span id="grade-percentage" ></span>/10</p>
+                <p ><span id="remarks"></span></p>
+            </div>
+        </div>
+            <div class="modal-content-container" id="mydiv66" style="display: none">
+
+                <h1 style="text-align: center"> Quiz Failed</h1>
+
+                <div class="grade-details">
+                    <p>*_*</p>
+                    <p>you Failed your Quiz  </p>
+                    <p>Hard Luck for next time</p>
+
+
+                </div>
+
+        </div>
+            </main>
+            {% endblock %}
+
+        </div>
+
+
+    </div>
+</section><!-- End About Section -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer">
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 footer-contact">
+                    <h3>Mentor</h3>
+                    <p>
+                        A108 Adam Street <br>
+                        New York, NY 535022<br>
+                        United States <br><br>
+                        <strong>Phone:</strong> +1 5589 55488 55<br>
+                        <strong>Email:</strong> info@example.com<br>
+                    </p>
+                </div>
+
+                <div class="col-lg-2 col-md-6 footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
+                        <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-6 footer-newsletter">
+                    <h4>Join Our Newsletter</h4>
+                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+                    <form action="" method="post">
+                        <input type="email" name="email"><input type="submit" value="Subscribe">
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-md-flex py-4">
+
+        <div class="me-md-auto text-center text-md-start">
+            <div class="copyright">
+                &copy; Copyright <strong><span>Mentor</span></strong>. All Rights Reserved
+            </div>
+            <div class="credits">
+                <!-- All the links in the footer should remain intact. -->
+                <!-- You can delete the links only if you purchased the pro version. -->
+                <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/ -->
+                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            </div>
+        </div>
+        <div class="social-links text-center text-md-right pt-3 pt-md-0">
+            <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+            <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+            <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+        </div>
+    </div>
+</footer><!-- End Footer -->
+
+<div id="preloader"></div>
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+{% block js %}
+<!-- Vendor JS Files -->
+<script src="{{asset('assets/vendor/aos/aos.js')}}"></script>
+<script src="{{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('assets/vendor/php-email-form/validate.js')}}"></script>
+<script src="{{asset('assets/vendor/purecounter/purecounter.js')}}"></script>
+<script src="{{asset('assets/vendor/swiper/swiper-bundle.min.js')}}"></script>
+
+<!-- Template Main JS File -->
+<script src="{{ asset('assets/js/main.js')}}"></script>
+    <script>
+        document.getElementById("start").style.display = 'block';
+        var countDownDate = new Date();
+        score1=0;
+        score2=0;
+        score3=0;
+        score4=0;
+        score5=0;
+        function toggleDiv(divid)
+        {
+
+            varon = divid + 'on';
+            varoff = divid + 'off';
+            var3=divid + '3';
+            var5=divid+'4' ;
+            var6=divid+'5' ;
+            var7=divid+'55' ;
+            //document.getElementById("varon").style.display = 'block';
+
+
+
+
+
+
+           /*
+            if(document.getElementById(varon).style.display == 'none')
+            {
+                document.getElementById(varoff).style.display = 'none';
+                document.getElementById(varon).style.display = 'block'
+                document.getElementById(var3).style.display = 'none';
+            }*/
+            score=0 ;
+
+            //******************************************************************
+            // check the first answer
+            x=0;
+
+ if(i==1) {
+
+
+     if (document.getElementById('choix11').checked) {
+         score1 = 2;
+
+
+     } else if (document.getElementById('choix12').checked) {
+         score1 = 0;
+
+     } else if (document.getElementById('choix13').checked) {
+         score1 = 0;
+
+
+     } else if (document.getElementById('choix14').checked) {
+         score1 = 0;
+
+
+     }else{
+         score1 = 0;
+     }
+
+ }
+
+            //******************************************************************
+            // check the second answer
+            z=0 ;
+            if(i==2) {
+
+                if (document.getElementById('choix24').checked) {
+                    score2 = 2;
+
+                } else if (document.getElementById('choix21').checked) {
+                    score2 = 0;
+                } else if (document.getElementById('choix22').checked) {
+                    score2 = 0;
+                } else if (document.getElementById('choix23').checked) {
+                    score2 = 0;
+                }else{
+                    score2 = 0;
+                }
+
+            }
+
+            //******************************************************************
+            // check the 3th answer
+            if(i==3) {
+                if (document.getElementById('choix33').checked) {
+
+                    score3 = 2;
+
+
+                } else if (document.getElementById('choix31').checked) {
+                    score3 = 0;
+                } else if (document.getElementById('choix32').checked) {
+                    score3 = 0;
+                } else if (document.getElementById('choix34').checked) {
+                    score3 = 0;
+                }else{
+                    score3=0;
+                }
+
+            }
+
+            //******************************************************************
+            // check the 4th answer
+
+            if(i==4) {
+                if (document.getElementById('choix43').checked) {
+                    score4 = 2;
+                } else if (document.getElementById('choix41').checked) {
+                    score4 = 0;
+                } else if (document.getElementById('choix42').checked) {
+                    score4 = 0;
+                } else if (document.getElementById('choix44').checked) {
+                    score4 = 0;
+                }else{
+                    score4 = 0;
+                }
+
+            }
+
+            //******************************************************************
+            // check the 5th answer
+
+            z=0;
+            if(i==5) {
+                if (document.getElementById('choix51').checked) {
+                    score5 = 2;
+
+
+                } else if (document.getElementById('choix52').checked) {
+                    score5 = 0;
+                } else if (document.getElementById('choix53').checked) {
+                    score5 = 0;
+                } else if (document.getElementById('choix54').checked) {
+                    score5 = 0;
+                }else{
+                    score5 = 0;
+                }
+            }
+
+
+
+
+            if(document.getElementById("start").style.display == 'block')
+            {
+                document.getElementById(varoff).style.display = 'none';
+                document.getElementById(varon).style.display = 'block'
+                document.getElementById(var3).style.display = 'none';
+                document.getElementById("start").style.display = 'none';
+                document.getElementById("timer").style.display = 'block';
+
+                i=1;
+
+
+
+            }else if(document.getElementById(varoff).style.display == 'none'&&document.getElementById(var3).style.display == 'none' &&document.getElementById(var5).style.display == 'none' &&document.getElementById(var6).style.display == 'none')
+            {
+                document.getElementById(varoff).style.display = 'block';
+                document.getElementById(varon).style.display = 'none';
+                document.getElementById(var3).style.display = 'none';
+                document.getElementById(var5).style.display = 'none';
+                document.getElementById(var6).style.display = 'none';
+                document.getElementById("start").style.display = 'none';
+                document.getElementById("timer").style.display = 'block';
+
+                   i=2;
+
+
+            } else if(document.getElementById(var3).style.display == 'none'&&document.getElementById(var5).style.display == 'none'&&document.getElementById(var6).style.display == 'none')
+            {
+                document.getElementById(varoff).style.display = 'none';
+                document.getElementById(varon).style.display = 'none'
+                document.getElementById(var3).style.display = 'block';
+                document.getElementById(var5).style.display = 'none';
+                document.getElementById(var6).style.display = 'none';
+                document.getElementById("start").style.display = 'none';
+                document.getElementById("timer").style.display = 'block';
+                 i=3;
+
+            }else if (document.getElementById(var5).style.display == 'none'&&document.getElementById(var6).style.display == 'none')
+            {
+                document.getElementById(varoff).style.display = 'none';
+                document.getElementById(varon).style.display = 'none'
+                document.getElementById(var3).style.display = 'none';
+                document.getElementById(var5).style.display = 'block';
+                document.getElementById(var6).style.display = 'none';
+                document.getElementById("start").style.display = 'none';
+                document.getElementById("timer").style.display = 'block';
+                 i=4;
+            }else if(document.getElementById(var6).style.display == 'none'){
+                document.getElementById(varoff).style.display = 'none';
+                document.getElementById(varon).style.display = 'none'
+                document.getElementById(var3).style.display = 'none';
+                document.getElementById(var5).style.display = 'none';
+                document.getElementById("start").style.display = 'none';
+                document.getElementById(var6).style.display = 'block';
+                document.getElementById("timer").style.display = 'block';
+                i=5;
+
+            }else  if(document.getElementById(var7).style.display == 'none'){
+                document.getElementById(varoff).style.display = 'none';
+                document.getElementById(varon).style.display = 'none'
+                document.getElementById(var3).style.display = 'none';
+                document.getElementById(var5).style.display = 'none';
+                document.getElementById(var6).style.display = 'none';
+                document.getElementById(var7).style.display = 'block';
+                document.getElementById("timer").style.display = 'none';
+                  i=6;
+                   if(i==6)
+                   {
+                if(score1==2){
+                    x=2;
+                }else if(score1==0)
+                {
+                    x=0;
+                }
+
+                if(score2==2){
+                    y=2;
+                }else if(score2==0)
+                {
+                    y=0;
+                }
+                if(score3==2)
+                {
+                    w=2;
+                }else if(score3==0)
+                {
+                    w=0;
+                }
+                if(score4==2)
+                {
+                    w1=2;
+                }else if(score4==0)
+                {
+                    w1=0;
+                }
+                if (score5 == 2) {
+                    z = 2;
+
+                }else if(score5==0)
+                {
+                    z=0;
+                }
+
+                score=score+x+z+y+w+w1;
+                document.getElementById('grade-percentage').innerHTML =score;
+                if(score==10)
+                {
+                    document.getElementById('right-answers').innerHTML = 5;
+                    document.getElementById('wrong-answers').innerHTML = 0;
+                }else if(score==8)
+                {
+                    document.getElementById('right-answers').innerHTML = 4;
+                    document.getElementById('wrong-answers').innerHTML = 1;
+                }else if(score==6)
+                {
+                    document.getElementById('right-answers').innerHTML = 3;
+                    document.getElementById('wrong-answers').innerHTML = 2;
+                }else if(score==4)
+                {
+                    document.getElementById('right-answers').innerHTML = 2;
+                    document.getElementById('wrong-answers').innerHTML = 3;
+                }else if(score==2)
+                {
+                    document.getElementById('right-answers').innerHTML = 1;
+                    document.getElementById('wrong-answers').innerHTML = 4;
+                }else{
+                    document.getElementById('right-answers').innerHTML = 0;
+                    document.getElementById('wrong-answers').innerHTML = 5;
+                }
+                   }
+            }
+
+
+
+
+
+
+        }
+
+
+
+        countDownDate.setTime(countDownDate.getTime() + 20000);
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get today's date and time
+
+
+            // If the count down is finished, write some text
+
+            var now = new Date().getTime();
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            var seconds = Math.floor((distance % (1000 * 20)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("demo").innerHTML = + seconds + "s ";
+
+            if (distance <0 ){
+                //clearInterval(x);
+               //score=score+x+z+y+w+w1;
+                   ss=1 ;
+                //document.getElementById('grade-percentage').innerHTML = score;
+                 // prompt(distance);
+                document.getElementById("mydivoff").style.display = 'none';
+                document.getElementById("mydivon").style.display = 'none'
+                document.getElementById("mydiv3").style.display = 'none';
+                document.getElementById("mydiv4").style.display = 'none';
+                document.getElementById("mydiv5").style.display = 'none';
+                document.getElementById("mydiv55").style.display = 'block';
+                document.getElementById("timer").style.display = 'none';
+                document.getElementById("mydiv66").style.display = 'none';
+                if(ss=1) {
+
+                    if (score1 == 2) {
+                        x = 2;
+                    } else if (score1 == 0) {
+                        x = 0;
+                    }
+
+                    if (score2 == 2) {
+                        y = 2;
+                    } else if (score2 == 0) {
+                        y = 0;
+                    }
+                    if (score3 == 2) {
+                        w = 2;
+                    } else if (score3 == 0) {
+                        w = 0;
+                    }
+                    if (score4 == 2) {
+                        w1 = 2;
+                    } else if (score4 == 0) {
+                        w1 = 0;
+                    }
+                    if (score5 == 2) {
+                        z = 2;
+
+                    } else if (score5 == 0) {
+                        z = 0;
+                    }
+
+                    score = score + x + z + y + w + w1;
+                    document.getElementById('grade-percentage').innerHTML = score;
+                    if (score == 10) {
+                        document.getElementById('right-answers').innerHTML = 5;
+                        document.getElementById('wrong-answers').innerHTML = 0;
+                    } else if (score == 8) {
+                        document.getElementById('right-answers').innerHTML = 4;
+                        document.getElementById('wrong-answers').innerHTML = 1;
+                    } else if (score == 6) {
+                        document.getElementById('right-answers').innerHTML = 3;
+                        document.getElementById('wrong-answers').innerHTML = 2;
+                    } else if (score == 4) {
+                        document.getElementById('right-answers').innerHTML = 2;
+                        document.getElementById('wrong-answers').innerHTML = 3;
+                    } else if (score == 2) {
+                        document.getElementById('right-answers').innerHTML = 1;
+                        document.getElementById('wrong-answers').innerHTML = 4;
+                    } else {
+                        document.getElementById('right-answers').innerHTML = 0;
+                        document.getElementById('wrong-answers').innerHTML = 5;
+                    }
+                    if (score == 10) {
+                        document.getElementById('right-answers').innerHTML = 5;
+                        document.getElementById('wrong-answers').innerHTML = 0;
+                    } else if (score == 8) {
+                        document.getElementById('right-answers').innerHTML = 4;
+                        document.getElementById('wrong-answers').innerHTML = 1;
+                    } else if (score == 6) {
+                        document.getElementById('right-answers').innerHTML = 3;
+                        document.getElementById('wrong-answers').innerHTML = 2;
+                    } else if (score == 4) {
+                        document.getElementById('right-answers').innerHTML = 2;
+                        document.getElementById('wrong-answers').innerHTML = 3;
+                    } else if (score == 2) {
+                        document.getElementById('right-answers').innerHTML = 1;
+                        document.getElementById('wrong-answers').innerHTML = 4;
+                    } else {
+                        document.getElementById('right-answers').innerHTML = 0;
+                        document.getElementById('wrong-answers').innerHTML = 5;
+                    }
+                    ss++;
+
+                }
+
+            }
+
+
+        }, 1000);
+
+
+        function toggleDiv1(divid)
+        {
+
+            varon = divid + 'on';
+            varoff = divid + 'off';
+            var3=divid + '3';
+            var5=divid+'4' ;
+            var6=divid+'5' ;
+            /*
+             if(document.getElementById(varon).style.display == 'none')
+             {
+                 document.getElementById(varoff).style.display = 'none';
+                 document.getElementById(varon).style.display = 'block'
+                 document.getElementById(var3).style.display = 'none';
+             }*/
+            if(document.getElementById(varon).style.display == 'none'&&document.getElementById(var3).style.display == 'none'&&document.getElementById(var5).style.display == 'none'&&document.getElementById(var6).style.display == 'none')
+            {
+                document.getElementById(varoff).style.display = 'none';
+                document.getElementById(varon).style.display = 'block';
+                document.getElementById(var3).style.display = 'none';
+                document.getElementById(var5).style.display = 'none';
+                document.getElementById(var6).style.display = 'none';
+            } else if(document.getElementById(varoff).style.display == 'none'&&document.getElementById(var5).style.display == 'none'&&document.getElementById(var6).style.display == 'none')
+            {
+                document.getElementById(varoff).style.display = 'block';
+                document.getElementById(varon).style.display = 'none'
+                document.getElementById(var3).style.display = 'none';
+                document.getElementById(var5).style.display = 'none';
+                document.getElementById(var6).style.display = 'none';
+            }else if(document.getElementById(var3).style.display == 'none'&&document.getElementById(var6).style.display == 'none')
+            {
+                document.getElementById(varoff).style.display = 'none';
+                document.getElementById(varon).style.display = 'none'
+                document.getElementById(var3).style.display = 'block';
+                document.getElementById(var5).style.display = 'none';
+                document.getElementById(var6).style.display = 'none';
+
+            }else if (document.getElementById(var5).style.display == 'none')
+            {
+                document.getElementById(varoff).style.display = 'none';
+                document.getElementById(varon).style.display = 'none'
+                document.getElementById(var3).style.display = 'none';
+                document.getElementById(var5).style.display = 'block';
+                document.getElementById(var6).style.display = 'none';
+
+            }
+
+
+        }
+
+
+
+
+
+        // Set the date we're counting down to
+        function pause() {
+            document.body.classList.add('paused');
+            document.getElementById("mydivoff").style.display = 'none';
+            document.getElementById("mydivon").style.display = 'none'
+            document.getElementById("mydiv3").style.display = 'none';
+            document.getElementById("mydiv4").style.display = 'none';
+            document.getElementById("mydiv5").style.display = 'none';
+            document.getElementById("mydiv55").style.display = 'none';
+            document.getElementById("timer").style.display = 'none';
+            document.getElementById("start").style.display = 'none';
+            document.getElementById("mydiv66").style.display = 'block';
+
+
+        }
+
+       /* function play() {
+            document.body.classList.remove('paused');
+            log.textContent = 'This document has focus. Click outside the document to lose focus.';
+        }*/
+
+        const log = document.getElementById('log');
+
+        window.addEventListener('blur', pause);
+       // window.addEventListener('focus', play);
+
+    </script>
+
+{% endblock %}
+</body>
+
+</html>
+
+
+

@@ -1,0 +1,96 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+                {{ form_widget(form.libelle,{'attr':{'class':'form-control','placeholder':'Nom de la publicite','style':"width: 200px;"} } ) }}
+
+                {{ form_errors(form.libelle) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+                {{ form_widget(form.imageFile,{'attr':{'class':'form-control','placeholder':'','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.imageFile) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+                {{ form_widget(form.start_date,{'attr':{'class':'form-control','placeholder':'Date debut','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.start_date) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+                {{ form_widget(form.end_date,{'attr':{'class':'form-control','placeholder':'Date fin','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.end_date) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+                {{ form_widget(form.description,{'attr':{'class':'form-control','placeholder':'description','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.description) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+                {{ form_widget(form.code_promo,{'attr':{'class':'form-control','placeholder':'code_promo','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.code_promo) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+                {{ form_widget(form.id_formation,{'attr':{'class':'form-control','placeholder':'formation','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.id_formation) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+                {{ form_widget(form.category,{'attr':{'class':'form-control','placeholder':'category','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.category) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

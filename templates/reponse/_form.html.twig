@@ -1,0 +1,42 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+
+                {{ form_widget(form.reponse_1,{'attr':{'class':'form-control','placeholder':'la reponse juste ','style':"width: 200px;"} } ) }}
+            </div>
+        </fieldset>
+        {{ form_errors(form.reponse_1) }}
+    </div>
+</div>
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+
+                {{ form_widget(form.reponse_2,{'attr':{'class':'form-control','placeholder':'Reponse fausse 1','style':"width: 200px;"} } ) }}
+            </div>
+        </fieldset>
+        {{ form_errors(form.reponse_2) }}
+    </div>
+</div>
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+
+                {{ form_widget(form.reponse_3,{'attr':{'class':'form-control','placeholder':'Reponse fausse 2','style':"width: 200px;"} } ) }}
+            </div>
+        </fieldset>
+        {{ form_errors(form.reponse_3) }}
+    </div>
+</div>
+
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

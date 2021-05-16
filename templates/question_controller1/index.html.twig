@@ -1,0 +1,51 @@
+
+{% extends 'back/index.html.twig' %}
+{% block bodyback %}
+    <h1 style="text-align: center">Gestion Question</h1>
+
+    <button  type="button" data-repeater-create class="btn btn-primary">
+        <i class="icon-plus4"> <a href="{{ path('question_controller1_new') }}">Ajouter</a></i>
+    </button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Type</th>
+                <th>Question_a</th>
+                <th>Reponse</th>
+                <th>Fausse_reponse</th>
+                <th>Supprimer</th>
+                <th>Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for question in questions %}
+            <tr>
+                <td>{{ question.id }}</td>
+                <td>{{ question.type }}</td>
+                <td>{{ question.questionA }}</td>
+                <td>{{ question.reponse }}</td>
+                <td>{{ question.fausseReponse }}</td>
+                <td>
+                    <button  type="button" data-repeater-create class="btn btn-primary">
+                    <a href="{{ path('question_controller1_show', {'id': question.id}) }}">Supprimer</a>
+                    </button>
+                </td>
+                <td>
+                    <button  type="button" data-repeater-create class="btn btn-primary">
+                    <a href="{{ path('question_controller1_edit', {'id': question.id}) }}">Modifier</a>
+                    </button>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

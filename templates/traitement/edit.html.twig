@@ -1,0 +1,20 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Edit Traitement{% endblock %}
+
+{% block bodyback %}
+
+    <h1 align="center">MODIFIER TRAITEMENT</h1>
+
+
+
+    {{ include('traitement/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <div style="text-align: right" >
+        <button  class="btn btn-dark" >
+            <a href="{{ path('traitement_index') }}" align="center">Retour à la liste des réclamations</a>
+        </button>
+    </div>
+
+
+{% endblock %}

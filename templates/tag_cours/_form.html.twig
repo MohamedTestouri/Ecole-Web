@@ -1,0 +1,29 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+                {{ form_widget(form.tag,{'attr':{'class':'form-control','placeholder':'Nom de la publicite','style':"width: 200px;"} } ) }}
+
+                {{ form_errors(form.formation) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+                {{ form_widget(form.formation,{'attr':{'class':'form-control','placeholder':'Nom de la publicite','style':"width: 200px;"} } ) }}
+
+                {{ form_errors(form.formation) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+<button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form)}}

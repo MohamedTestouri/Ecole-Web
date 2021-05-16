@@ -1,0 +1,22 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}QusetionQuiz{% endblock %}
+
+{% block bodyback %}
+    <h1>QusetionQuiz</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ qusetion_quiz.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('qusetion_quiz_index') }}">back to list</a>
+
+    <a href="{{ path('qusetion_quiz_edit', {'id': qusetion_quiz.id}) }}">edit</a>
+
+    {{ include('qusetion_quiz/_delete_form.html.twig') }}
+{% endblock %}

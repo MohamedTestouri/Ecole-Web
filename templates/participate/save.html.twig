@@ -1,0 +1,9 @@
+
+{% extends 'back/base.html.twig' %}
+{% block title %}Event_Participate{% endblock %}
+{% form_theme formaj 'bootstrap_4_layout.html.twig' %}
+
+{% block main %}
+    {{ form_start(formaj, {'attr':{'novalidate':'novalidate'}}) }}
+    {{ form_end(formaj) }}
+{% endblock %}

@@ -1,0 +1,197 @@
+{% extends 'back/index.html.twig' %}
+
+{% block lien %}
+    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
+          rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/vendors.css">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN STACK CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/app.css">
+    <!-- END STACK CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+
+{% endblock %}
+{% block bodyback %}
+
+    <a class="dropdown-item" href="{{ path('publicite_index2') }}">Publicite Views</a>
+    <button type="button" class="btn btn-outline-success block btn-lg" data-toggle="modal" data-target="#large">
+        Launch Modal
+    </button>
+    <a class="btn btn-primary btn-block" href="{{ path('publicite_new') }}">Create new</a>
+    <select id="tri">
+        <option hidden value="">Tri  </option>
+        <option value="ASC">Tri Ascendant by name </option>
+        <option value="DESC">Tri Descendant by name</option>
+    </select>
+
+<input type="text" id="search" class="form-control" placeholder="Search">
+
+<table class="table" id="t">
+
+    <tr>
+        <th>Id</th>
+        <th>Libelle</th>
+        <th>Image</th>
+        <th>Start_date</th>
+        <th>End_date</th>
+        <th>Description</th>
+        <th>Code_promo</th>
+        <th>actions</th>
+    </tr>
+
+    <tbody id="all">
+    {% for publicite in publicites %}
+        <tr>
+            <td>{{ publicite.id }}</td>
+            <td>{{ publicite.libelle }}</td>
+            <td>{{ publicite.image }}</td>
+            <td>{{ publicite.startDate ? publicite.startDate|date('Y-m-d') : '' }}</td>
+            <td>{{ publicite.endDate ? publicite.endDate|date('Y-m-d') : '' }}</td>
+            <td>{{ publicite.description }}</td>
+            <td>{{ publicite.codePromo }}</td>
+            <td>
+                <a href="{{ path('publicite_show', {'id': publicite.id}) }}">show</a>
+                <a href="{{ path('publicite_edit', {'id': publicite.id}) }}">edit</a>
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="8">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tbody id="search"></tbody>
+
+
+
+
+</table>
+
+    <div class="modal fade text-left" id="large" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17"
+         aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel17">ADD Modal</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h1>Create new Publicite</h1>
+
+                    {{ include('publicite/_form.html.twig') }}
+
+                    <a href="{{ path('publicite_index') }}">back to list</a>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn grey btn-outline-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $( document ).ready(function() {
+
+        $("#tri").click(function(e) {
+            /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+            var value1 = $(this).val();
+            console.log(value1)
+
+            /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+
+            $.ajax({
+
+                url: "{{ path('tripub') }}",
+
+                type: 'GET',
+
+                data: {
+                    'tri': value1
+                },
+
+                success: function (retour) {
+                    if (retour) {
+
+                        $('#t tbody#search').empty();
+                        $.each(JSON.parse(retour), function (i, publicite) {
+                            $('#t tbody#all').hide();
+                            $('#t tbody#search').append('<tr><td>' + publicite.id + '</td>' +
+                                '<td>' + publicite.libelle + ' </td><td>' + publicite.image + '  </td>' +
+                                '<td> ' + publicite.start_date + '</td><td> ' + publicite.end_date + ' </td>' +
+                                '<td>' + publicite.description + ' </td><td> ' + publicite.code_promo + ' </td>' +
+                                '<td> <a href=" '+publicite.id+'">Show</a> <br>' +
+                                '<a href="'+publicite.id+'/edit">Edit</a>  </td></tr>');
+                        });
+
+                    } else {
+                        $('#t tbody#all').show();
+                        $('#t tbody#search').empty();
+                        $('#t tbody#search').fadeIn('fast');
+                    }
+                },
+            });
+
+            return false;
+
+        });
+
+        $("#search").keyup(function(e){
+            /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+            var value = $(this).val();
+            /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+
+            $.ajax({
+
+                url : "{{ path('searchpub') }}",
+
+                type : 'GET',
+
+                data: {
+                    'searchValue' : value
+                },
+
+                success : function(retour){
+                    if(retour) {
+
+                        $('#t tbody#search').empty();
+                        $.each(JSON.parse(retour), function(i, publicite) {
+                            $('#t tbody#all').hide();
+                            $('#t tbody#search').append('<tr><td>'+publicite.id+'</td>' +
+                                '<td>'+publicite.libelle+' </td><td>'+publicite.image+'  </td>' +
+                                '<td> '+publicite.start_date+'</td><td> '+publicite.end_date +' </td>' +
+                                '<td>'+publicite.description+' </td><td> '+publicite.code_promo+' </td>' +
+                                '<td> <a href=" '+publicite.id+'">Show</a> <br>' +
+                                '<a href="'+publicite.id+'/edit">Edit</a> </td></tr>');
+                        });
+
+                    }
+                    else
+                    {
+                        $('#t tbody#all').show();
+                        $('#t tbody#search').empty();
+                        $('#t tbody#search').fadeIn('fast');
+                    }
+                },
+            });
+            return false;
+        });
+    });
+</script>
+{% endblock %}
+
+
+
+
+

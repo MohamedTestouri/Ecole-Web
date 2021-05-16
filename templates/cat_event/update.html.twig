@@ -1,0 +1,8 @@
+
+{% extends 'back/index.html.twig' %}
+{% block title %}Edit Categorie Evenement{% endblock %}
+{% form_theme fup 'bootstrap_4_layout.html.twig' %}
+
+{% block bodyback %}
+    {{ form (fup, {'attr':{'novalidate':'novalidate'}}) }}
+{% endblock %}

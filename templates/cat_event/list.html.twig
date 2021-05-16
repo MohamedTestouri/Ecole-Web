@@ -1,0 +1,31 @@
+
+{% extends 'back/index.html.twig' %}
+{% block title %}liste des evenements{% endblock %}
+{% block lien %} <link href="https://bootswatch.com/4/darkly/bootstrap.min.css">
+<link href="https://bootswatch.com/4/materia/bootstrap.min.css">
+{% endblock %}
+{% block bodyback %}
+    <center><h1><font color="#6495ed">La liste des catégories</font></h1></center>
+    <button type="button" class="btn btn-secondary"><a href="{{ path('Cat_ajout') }}">Ajouter catégorie</a></button>
+    <br>
+    <br>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col"  bgcolor="#cd5c5c">ID</th>
+            <th scope="col"  bgcolor="#cd5c5c">NOM CATEGORIE</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in tab %}
+            <tr>
+                <th >{{ c.id }}</th>
+                <td>{{ c.libelle }} </td>
+                <td> <a href="{{ path('Cat_update',{'id':c.id}) }}"> <img src="https://img.icons8.com/material-sharp/24/000000/edit--v1.png"/></a></td>
+                <td><a href="{{ path('Cat_supp',{'id':c.id}) }}"><img src="https://img.icons8.com/windows/32/000000/delete-forever.png"/></a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

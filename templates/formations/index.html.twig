@@ -1,0 +1,79 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Tableformations index{% endblock %}
+
+{% block bodyback %}
+    <h1 align="center">GESTION DES FORMATIONS</h1>
+    <center>
+
+        <form style="display: inline;"class="form-inline my-2 my-lg-0"  method="post" action="{{ path("rechercheFor") }}" class="ficon ft-search">
+            <div class="col-lg-3 col-md-6 col-12">
+                <input class="form-control mr-sm-6" name="search" type="search" placeholder="Rechercher... " aria-label="Search" >
+            </div>
+        </form>
+    </center>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+    </div>
+    <div align="center">
+    <button align="center" type="button" class="btn btn-dark" >
+        <a href="{{ path('formations_new') }}" >Ajouter une nouvelle formation</a>
+    </button>
+    </div>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Code</th>
+                <th>Titre</th>
+                <th>Description</th>
+                <th>Duree</th>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Etat</th>
+
+                <th>Afficher</th>
+                <th>Modifier</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for tableformation in tableformations %}
+            <tr>
+                <td>{{ tableformation.id }}</td>
+                <td>{{ tableformation.Code }}</td>
+                <td>{{ tableformation.Titre }}</td>
+                <td>{{ tableformation.Description }}</td>
+                <td>{{ tableformation.Duree }}</td>
+                <td>{{ tableformation.Type }}</td>
+                <td>{{ tableformation.Prix }}</td>
+                <td>{{ tableformation.Etat }}</td>
+
+
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                    <a href="{{ path('formations_show', {'id': tableformation.id}) }}">Afficher</a>
+                    </button>
+                </td>
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                    <a href="{{ path('formations_edit', {'id': tableformation.id}) }}">Modifier</a>
+                    </button>
+                </td>
+
+      </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+
+{% endblock %}

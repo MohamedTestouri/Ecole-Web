@@ -1,0 +1,63 @@
+{% extends 'back/index.html.twig' %}
+{% block title %}Categorie Publicite {% endblock %}
+{% block lien %}
+    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
+          rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/vendors.css">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN STACK CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/app.css">
+    <!-- END STACK CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+
+{% endblock %}
+{% block bodyback %}
+<a class="btn btn-primary btn-block" href="{{ path('category_publicity_new') }}">Create new</a>
+<input type="text" id="search" class="form-control" placeholder="Search">
+
+<table class="table" id="t">
+
+    <tr>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+
+    <tbody id="all">
+
+
+        {% for category_publicity in category_publicities %}
+            <tr>
+                <td>{{ category_publicity.id }}</td>
+                <td>{{ category_publicity.description }}</td>
+                <td>
+                    <a href="{{ path('category_publicity_show', {'id': category_publicity.id}) }}">show</a>
+                    <a href="{{ path('category_publicity_edit', {'id': category_publicity.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+
+
+
+
+
+</table>
+{% endblock %}
+
+
+
+
+
+

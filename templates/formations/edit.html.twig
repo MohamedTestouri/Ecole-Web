@@ -1,0 +1,15 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Edit Tableformations{% endblock %}
+
+{% block bodyback %}
+    <h1 align="center">MODIFIER FORMATION</h1>
+    <div style="text-align: center" >
+        <button  class="btn btn-dark" >
+            <a href="{{ path('form_index') }}" align="center">Retour à la liste des formations</a>
+        </button>
+    </div>
+    {{ include('formations/_form.html.twig', {'button_label': 'Update'}) }}
+
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Paiement{% endblock %}
+
+{% block bodyback %}
+    <h1>Paiement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ paiement.id }}</td>
+            </tr>
+            <tr>
+                <th>Prix</th>
+                <td>{{ paiement.prix }}</td>
+            </tr>
+            <tr>
+                <th>Id_user</th>
+                <td>{{ paiement.idUser }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('paiement_index') }}">back to list</a>
+
+    <a href="{{ path('paiement_edit', {'id': paiement.id}) }}">edit</a>
+
+    {{ include('paiement/_delete_form.html.twig') }}
+{% endblock %}

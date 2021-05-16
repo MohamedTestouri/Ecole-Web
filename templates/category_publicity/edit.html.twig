@@ -1,0 +1,13 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Edit CategoryPublicity{% endblock %}
+
+{% block bodyback %}
+    <h1>Edit CategoryPublicity</h1>
+
+    {{ include('category_publicity/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('category_publicity_index') }}">back to list</a>
+
+    {{ include('category_publicity/_delete_form.html.twig') }}
+{% endblock %}

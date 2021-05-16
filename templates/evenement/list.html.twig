@@ -1,0 +1,88 @@
+
+{% extends 'back/index.html.twig' %}
+{% block title %}liste des Evenements{% endblock %}
+
+{% block lien %} <link href="https://bootswatch.com/4/darkly/bootstrap.min.css"> {% endblock %}
+{% block bodyback %}
+    <center><h1><font color="#20b2aa">La liste des évènements</font></h1></center>
+    <br>
+    <br>
+    <input type="text" id="search" class="form-control" placeholder="Search">
+    <button type="button" class="btn btn-secondary"><a href="{{ path('EventAjout') }}">Ajouter un événement</a></button>
+    <br>
+    <br>
+    <br>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+          {# <th scope="col"  bgcolor="#a52a2a">ID Event</th> #}
+            <th scope="col"  bgcolor="#cd5c5c">NOM Event</th>
+            <th scope="col"  bgcolor="#cd5c5c">NOM CATEGORIE</th>
+            <th scope="col"  bgcolor="#cd5c5c">Description Event</th>
+            <th scope="col"  bgcolor="#cd5c5c">Image</th>
+            <th scope="col"  bgcolor="#cd5c5c">Date Début</th>
+            <th scope="col"  bgcolor="#cd5c5c">Date fin</th>
+            <th scope="col"  bgcolor="white"><a href="{{ path('Eventrefresh') }}"><img src="https://img.icons8.com/fluent/48/000000/refresh-shield.png"/></a></th>
+            <th scope="col"  bgcolor="white"><a href="{{ path('event_stat') }}"><img src="https://img.icons8.com/nolan/64/statistics.png"/></a></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in tab %}
+            <tr>
+               {#  <td >{{ c.id }}</td> #}
+                <td>{{ c.nom }} </td>
+                <td>{{ c.catEvent.libelle }} </td>
+                <td>{{ c.description }} </td>
+              <td><img src="{{ asset('uploads/images/' ~ c.image) }}"
+                width="100" height="100"></td>
+                <td>{{ c.datedeb |date('Y-m-d')}} </td>
+                <td>{{ c.datefin |date('Y-m-d') }} </td>
+                <td> <a href="{{ path('Eventmodif',{'id':c.id}) }}"> <img src="https://img.icons8.com/material-sharp/24/000000/edit--v1.png"/></a></td>
+                <td><a href="{{ path('Eventsupp',{'id':c.id}) }}"><img src="https://img.icons8.com/windows/32/000000/delete-forever.png"/></a></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script>
+        $( document ).ready(function() {
+            $("#search").keyup(function(){
+                /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+                var value = $(this).val();
+                /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+                $.ajax({
+                    /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                    url : "{{ path('searcheventx') }}",
+                    /* La méthode utilisée pour transférer les données est GET */
+                    type : 'GET',
+                    /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                    data: {
+                        'searchValue' : value
+                    },
+                    /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                    success : function(retour){
+                        if(retour){
+                            $('#t tbody#search').empty();
+                            $.each(JSON.parse(retour), function(i, obj) {
+                                $('#t tbody#all').hide();
+                                $('#t tbody#search').append('<tr><td> '+obj.nom+'  </td><td>    '+obj.catEvent.libelle+'  </td><td>'+obj.description+' </td><td>'+obj.datedeb|date('Y-m-d')+'  </td><td>'+obj.datefin|date('Y-m-d')+'  </td><td><a href="Eventmodif/'+obj.id+'"><img src="https://img.icons8.com/material-sharp/24/000000/edit--v1.png"/></a> </br><a href="Eventsupp/'+obj.id+'"><img src="https://img.icons8.com/windows/32/000000/delete-forever.png"/></a></td></tr>');
+                            });
+                        }
+                        else
+                        {
+                            $('#t tbody#all').show();
+                            $('#t tbody#search').empty();
+                            $('#t tbody#search').fadeIn('fast');
+                        }
+                    },
+                });
+                return false;
+            });
+        });
+    </script>
+{% endblock %}

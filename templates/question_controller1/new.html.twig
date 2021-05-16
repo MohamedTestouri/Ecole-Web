@@ -1,0 +1,13 @@
+{% extends 'back/index.html.twig' %}
+{% block title %}New Question{% endblock %}
+
+{% block bodyback %}
+    <h1 style="text-align: center">Create new Question</h1>
+    <div style="text-align: center">
+        {{ include('question_controller1/_form.html.twig') }}
+        <a href="{{ path('question_controller1_index') }}">back to list</a>
+    </div>
+
+{% endblock %}
+
+

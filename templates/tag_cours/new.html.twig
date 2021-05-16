@@ -1,0 +1,10 @@
+{% extends 'back/index.html.twig' %}
+{% block title %}New TagCours{% endblock %}
+
+{% block bodyback %}
+    <h1>Create new TagCours</h1>
+
+    {{ include('tag_cours/_form.html.twig') }}
+
+    <a href="{{ path('tag_cours_index') }}">back to list</a>
+{% endblock %}

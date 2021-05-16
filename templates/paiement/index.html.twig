@@ -1,0 +1,44 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Paiement index{% endblock %}
+
+{% block bodyback %}
+    <h1>Paiement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prix</th>
+                <th>Id_user</th>
+                <th>tire_Formation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for paiement in paiements %}
+            <tr>
+                <td>{{ paiement.id }}</td>
+                <td>{{ paiement.prix }}</td>
+                <td>{{ paiement.idUser }}</td>
+                {% for form in tableformations %}
+                {% if paiement.idFormation == form.id %}
+                    <td>{{ form.titre }}</td>
+                    {% endif %}
+                {% endfor %}
+
+                <td>
+                    <a href="{{ path('paiement_show', {'id': paiement.id}) }}">show</a>
+                    <a href="{{ path('paiement_edit', {'id': paiement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('paiement_new') }}">Create new</a>
+{% endblock %}

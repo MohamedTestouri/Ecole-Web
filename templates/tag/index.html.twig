@@ -1,0 +1,131 @@
+{% extends 'back/index.html.twig' %}
+
+{% block lien %}
+    <link rel="apple-touch-icon" href="../../../app-assets/images/ico/apple-icon-120.png">
+    <link rel="shortcut icon" type="image/x-icon" href="../../../app-assets/images/ico/favicon.ico">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
+          rel="stylesheet">
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/vendors.css">
+    <!-- END VENDOR CSS-->
+    <!-- BEGIN STACK CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/app.css">
+    <!-- END STACK CSS-->
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../app-assets/css/core/menu/menu-types/vertical-menu.css">
+    <!-- END Page Level CSS-->
+    <!-- BEGIN Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../../../assets/css/style.css">
+
+{% endblock %}
+{% block bodyback %}
+    <a class="btn btn-primary " href="{{ path('tag_removed') }}">Tags Removed </a>
+    <a class="btn btn-primary " href="{{ path('tag_index') }}">Active Tags </a>
+
+    <a class="btn btn-primary btn-block" href="{{ path('tag_new') }}">Create new</a>
+
+<input type="text" id="search" class="form-control" placeholder="Search">
+
+<table class="table" id="t">
+
+    <tr>
+        <th>Id</th>
+        <th>Tag_name</th>
+        <th>Actions</th>
+    </tr>
+
+    <tbody id="all">
+    {% for tag in tags %}
+        <tr>
+            <td>{{ tag.id }}</td>
+            <td>{{ tag.tagName }}</td>
+            <td>
+                <a href="{{ path('tag_show', {'slug': tag.slug}) }}">show</a>
+                <a href="{{ path('tag_edit', {'slug': tag.slug}) }}">edit</a>
+                <a href="{{ path('tag_state', {'slug': tag.id}) }}">delete</a>
+
+
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="3">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    <tbody id="search"></tbody>
+
+
+
+
+</table>
+    <canvas id="doughnut-chart" width="800" height="450"></canvas>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $( document ).ready(function() {
+        $("#search").keyup(function(e){
+            /* La variable value va prendre la valeur insérer dans le champ de texte afin d’effectuer la recherche */
+            var value = $(this).val();
+            /* Ajax est lancé lors du remplissage du champ texte dont l’id est « search » pour faire la recherche */
+            $.ajax({
+                /* l’url est une chaine de caractères contenant l’adresse où la requête est envoyée */
+                url : "{{ path('search_tag') }}",
+                /* La méthode utilisée pour transférer les données est GET */
+                type : 'GET',
+                /*Ici search value va prendre la chaine entrée par un utilisateur dans la zone de recherche et sera placée après l’url */
+                data: {
+                    'searchValue' : value
+                },
+                /*Cette fonction permet de vider le contenu du tableau pour recevoir le nouveau contenu*/
+                success : function(retour){
+                    if(retour) {
+                        console.log(retour);
+                        $('#t tbody#search').empty();
+                        $.each(JSON.parse(retour), function(i, obj) {
+                            $('#t tbody#all').hide();
+                            $('#t tbody#search').append('<tr><td>'+obj.id+'</td><td>'+obj.tag_name+'  </td><td><a href="'+obj.slug+'">SHOW</a> </br><a href="'+obj.slug+'/edit">edit</a> <a href="state/'+obj.id+'">delete</a></td></tr>');
+                        });
+
+                                  }
+                    else
+                    {
+                        $('#t tbody#all').show();
+                        $('#t tbody#search').empty();
+                        $('#t tbody#search').fadeIn('fast');
+                    }
+                },
+            });
+            return false;
+        });
+    });
+</script>
+    <script>
+        new Chart(document.getElementById("doughnut-chart"), {
+            type: 'doughnut',
+            data: {
+                labels: [""],
+                datasets: [
+                    {
+                        label: "",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: [,]
+                    }
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: ' tags status  '
+                }
+            }
+        });
+    </script>
+{% endblock %}
+
+
+
+
+

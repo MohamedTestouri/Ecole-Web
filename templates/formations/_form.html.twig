@@ -1,0 +1,104 @@
+{{ form_start(form,{'attr': {'novalidate': 'novalidate'}} ) }}
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+
+                {{ form_widget(form.Code,{'attr':{'class':'form-control','placeholder':'Code','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.Code) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+
+                {{ form_widget(form.Titre,{'attr':{'class':'form-control','placeholder':'Titre','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.Titre) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+
+                {{ form_widget(form.Description,{'attr':{'class':'form-control','placeholder':'Description','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.Description) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+
+                {{ form_widget(form.Duree,{'attr':{'class':'form-control','placeholder':'Duree','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.Duree) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+
+                {{ form_widget(form.Type,{'attr':{'class':'form-control','placeholder':'Type','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.Type) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+
+                {{ form_widget(form.Prix,{'attr':{'class':'form-control','placeholder':'Prix','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.Prix) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="card-content">
+    <div class="card-body">
+        <fieldset>
+            <div class="input-group">
+
+
+                {{ form_widget(form.Etat,{'attr':{'class':'form-control','placeholder':'Etat','style':"width: 200px;"} } ) }}
+                {{ form_errors(form.Etat) }}
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+            <div class="input-group">
+                {{ form_widget(form.imageFile,{'attr':{'class':'form-control','placeholder':'Contenu','style':"width: 200px;"} } ) }}
+
+
+            </div>
+
+<div style="text-align: center">
+    <button  class="btn btn-dark">{{ button_label|default('Save') }}</button>
+</div>
+
+{{ form_end(form) }}

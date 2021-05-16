@@ -1,0 +1,48 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Traitement index{% endblock %}
+
+{% block bodyback %}
+    <h1 align="center">TRAITEMENT </h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Commentaire</th>
+                <th> Afficher</th>
+                <th> Modifier </th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for traitement in traitements %}
+            <tr>
+
+                <td>{{ traitement.id }}</td>
+                <td>{{ traitement.commentaire }}</td>
+
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                        <a href="{{ path('traitement_show', {'id': traitement.id}) }}">Afficher</a>
+                    </button>
+                </td>
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                        <a href="{{ path('traitement_edit', {'id': traitement.id}) }}">Modifier</a>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div style="text-align: left" >
+        <button  class="btn btn-dark" >
+            <a href="{{ path('reclamation_index') }}" align="center">Retour à la liste des réclamations</a>
+        </button>
+    </div>
+
+{% endblock %}

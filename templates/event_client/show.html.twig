@@ -1,0 +1,58 @@
+{% extends 'back/base.html.twig' %}
+
+{% block title %}EventDetail{% endblock %}
+
+{% block main %}
+
+
+    <div style="text-align: right" >
+
+            <a href="{{ path('event_client') }}"  ><img src="https://img.icons8.com/nolan/64/return.png"/></a>
+
+
+    </div>
+
+    <div class="container" data-aos="fade-up">
+
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
+
+            <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+                <div class="course-item">
+
+                    <div class="course-content">
+                        <div><img src="{{ asset('uploads/images/' ~ event.image) }}"
+                                  width="300" height="300"></div>
+                        <br>
+                        <br>
+
+                        <div style="color:#0CC27E" class="d-flex justify-content-between align-items-center mb-3">
+                            <h4 >  Nom:{{ event.nom }}</h4>
+
+                            {#  <p class="price">{{ tableformation.Prix }}</p>#}
+                        </div>
+                        <div>
+                            <h4>Categorie:{{ event.catEvent.libelle }}</h4>
+                        </div>
+                        <div>
+                            <p> <h4> Description:</h4>{{ event.description }} </p>
+                        </div>
+                        <div>
+                           <h5>Date Début d'évenement {{ event.datedeb | date ('d/m/Y') }}</h5>
+                            <h5>Date Fin d'évenement {{ event.datefin | date ('d/m/Y') }}</h5>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+
+
+                        </div>
+
+
+                        <p></p>
+                    </div>
+                </div>
+            </div> <!-- End Course Item-->
+        </div>
+    </div>
+
+
+{% endblock %}

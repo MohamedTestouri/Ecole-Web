@@ -1,0 +1,15 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Edit Tablecours{% endblock %}
+
+{% block bodyback %}
+    <h1 style="text-align: center">MODIFIER COURS</h1>
+    <div style="text-align: center" >
+        <button  class="btn btn-dark" >
+            <a href="{{ path('cours_index') }}">Retour à la liste des cours</a>
+        </button>
+    </div>
+
+    {{ include('cours/_form.html.twig', {'button_label': 'Update'}) }}
+
+{% endblock %}

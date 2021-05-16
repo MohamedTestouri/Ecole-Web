@@ -1,0 +1,85 @@
+
+
+{% extends 'back/index.html.twig' %}
+{% block lien %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" integrity="sha512-/zs32ZEJh+/EO2N1b0PEdoA10JkdC3zJ8L5FTiQu82LR9S/rOQNfQN7U59U9BC12swNeRAz3HSzIL2vpp4fv3w==" crossorigin="anonymous" >
+{% endblock %}
+{% block bodyback %}
+
+
+    <div align="center">
+
+        <h1 align="center">STATISTIQUES</h1>
+    </div>
+
+
+
+    <!-- Pie charts section start -->
+    <section id="chartjs-pie-charts">
+        <div class="row">
+            <!-- Simple Pie Chart -->
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Titre des formations</h4>
+                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements">
+
+                        </div>
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <canvas id="formations" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Simple Doughnut Chart -->
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Type des formations</h4>
+                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+
+                    </div>
+                    <div class="card-content collapse show">
+                        <div class="card-body">
+                            <canvas id="simple-doughnut-chart" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Pie Chart -->
+
+            <!-- Doughnut Chart -->
+
+        </div>
+    </section>
+    <!-- // Pie charts section end -->
+
+
+{% endblock %}
+{% block js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"
+            integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
+    <script>
+        let formations = document.querySelector("#formations")
+        let formationGraph=new Chart(formations,{
+            type:"pie",
+            data:{
+                labels: {{formationT|raw}},
+                datasets: [{
+                    label: "My First dataset",
+                    data: {{formationCount|raw}},
+                    backgroundColor: ['#00A5A8', '#626E82', '#FF7D4D','#FF4558', '#16D39A'],
+                }]
+            }
+        })
+    </script>
+
+
+{% endblock %}

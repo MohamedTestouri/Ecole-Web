@@ -1,0 +1,50 @@
+{% extends 'back/index.html.twig' %}
+
+{% block title %}Reponse index{% endblock %}
+
+{% block bodyback %}
+    <h1 style="text-align: center">Reponse Liste</h1>
+</br>
+    </br>
+    <div style="text-align: center">
+    <td> <button  type="button" class="btn btn-dark" > <a href="{{ path('reponse_new') }}">Ajouter </a></button></td>
+    </div>
+    </br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reponse_1</th>
+                <th>Reponse_2</th>
+                <th>Reponse_3</th>
+                <th>Afficher</th>
+                <th>Modifier</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse in reponses %}
+            <tr>
+                <td>{{ reponse.id }}</td>
+                <td>{{ reponse.reponse1 }}</td>
+                <td>{{ reponse.reponse2 }}</td>
+                <td>{{ reponse.reponse3 }}</td>
+                <td>
+                    <button  type="button" class="btn btn-dark" >
+                    <a href="{{ path('reponse_show', {'id': reponse.id}) }}">Afficher</a>
+                    </button>
+
+                </td>
+                <td> <button  type="button" class="btn btn-dark" >
+                        <a href="{{ path('reponse_edit', {'id': reponse.id}) }}">Modifier</a>
+                    </button></td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
